@@ -30,35 +30,36 @@ GitHub Copilotの利用は、IDE内Copilotによる人主導の対話・編集�
 
 ```mermaid
 flowchart TD
-  A["Discovery-only inventory<br/>docs/code repo roots, assets, unreadable items, existing instructions, output permissions"] --> B["Human alignment<br/>sources of truth, constraints, approval path, pilot feature"]
-  B --> C["Design review<br/>gaps, contradictions, responsibility boundaries"]
-  C --> D["Acceptance criteria / Issue draft<br/>usage, expected behavior, scope, dependencies, unresolved questions"]
-  D --> E["Behavior-first test design<br/>main behavior first, then boundaries, errors, states, gaps"]
-  E --> F["Implementation iteration<br/>AI-assisted code/test changes within agreed scope"]
-  F --> G["Execution evidence<br/>test results, target commit, target design version"]
-  G --> H["Mechanical trace check<br/>missing links, stale evidence, failed or not-run tests"]
-  H --> I["Human semantic review<br/>meaningful coverage, design judgment, approval"]
-  I --> J["One-feature pilot decision<br/>expand, adjust, or stop"]
+  A["棚卸しのみ<br/>場所・不明点・権限"] --> B["人がすり合わせ<br/>正本・制約・代表機能"]
+  B --> C["設計レビュー<br/>矛盾・責任分界"]
+  C --> D["受け入れ条件<br/>Issue草案"]
+  D --> E["振る舞い優先<br/>テスト設計"]
+  E --> F["実装とテスト<br/>AIは支援"]
+  F --> G["実行証拠<br/>結果・commit・設計版"]
+  G --> H["機械チェック<br/>欠落・古い証拠"]
+  H --> I["人の意味レビュー<br/>設計判断・承認"]
+  I --> J["1機能パイロット<br/>拡大・調整・停止"]
 ```
 
 最初の一周では、代表機能を一つだけ選びます。全体に一斉導入する前に、既存テンプレートを壊さずに、Issue、受け入れ条件、テスト仕様、テストコード、実行証拠、レビュー観点がつながるかを確認します。
 
 ## トレーサビリティの考え方
 
-トレーサビリティは「IDが一致していること」ではなく、「合意済みの設計意図が、検証条件、テスト、実行証拠、人のレビューまで追えること」です。リンクは多対多になり得ます。候補リンクと承認済みリンクを分け、変更時には双方向に影響をたどります。
+トレーサビリティは「IDが一致していること」ではなく、「合意済みの設計意図が、検証条件、テスト、実行証拠、人のレビューまで追えること」です。リンクは多対多になり得るため、図では主な流れだけを示しています。候補リンクと承認済みリンクを分け、変更時には設計から証拠へ、証拠から設計へ双方向に影響をたどります。
 
 ```mermaid
-flowchart LR
-  DS["Versioned design source<br/>screen spec, Figma, API spec, agreed note"] --> VC["Verification condition / AC<br/>expected behavior and boundaries"]
-  VC --> TS["Test spec / test code<br/>unit, interaction, E2E, review evidence"]
-  TS --> EV["Execution evidence<br/>result, run date, commit, design version"]
-  IS["Issue / implementation change"] --> VC
+flowchart TD
+  DS["版付き設計ソース<br/>仕様・Figma・API"] --> VC["検証条件<br/>受け入れ条件"]
+  VC --> TS["テスト仕様<br/>テストコード"]
+  TS --> EV["実行証拠<br/>結果・commit・設計版"]
+  EV --> HR["人の意味レビュー<br/>意図を証明できるか"]
+  HR --> OK["承認済みリンク"]
+
+  IS["Issue・実装変更"] --> VC
   IS --> TS
-  EV --> HR["Human semantic review<br/>does this still prove the intended behavior?"]
-  HR --> CF["Confirmed link"]
-  VC -.-> CL["Candidate link<br/>needs human approval"]
+  VC -.-> CL["候補リンク<br/>人の確認待ち"]
   CL -.-> TS
-  EV -.-> ST["Stale evidence after requirement change<br/>old pass does not prove changed requirement"]
+  EV -.-> ST["古い証拠<br/>変更後は再確認"]
 ```
 
 例として、架空の検索画面で「無効なメールアドレスなら保存できず、エラーメッセージを表示する」という設計項目があるとします。そこから「保存ボタンが送信を抑止する」「エラー文言が表示される」「修正後に保存できる」という検証条件を作り、Storybook InteractionやE2Eに割り当て、実行結果を設計版とcommitに紐づけます。後から「メール形式の許容ルール」が変わった場合、古いテストがpassしていても新しい期待値を証明したことにはなりません。古い証拠は履歴として残し、失効または再確認対象にします。
