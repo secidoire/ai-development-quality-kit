@@ -1,0 +1,24 @@
+{
+  "tests": [
+    {
+      "test_id": "T-HOOK-001",
+      "path": "src/features/customer/useCustomerSearch.test.ts",
+      "layer": "vitest"
+    },
+    {
+      "test_id": "T-STORY-001",
+      "path": "src/features/customer/CustomerSearchPage.stories.tsx",
+      "layer": "storybook"
+    },
+    {
+      "test_id": "T-E2E-002",
+      "path": "e2e/customer-search.spec.ts",
+      "layer": "playwright"
+    },
+    {
+      "test_id": "T-ORPHAN-999",
+      "path": "src/legacy/old-search.test.ts",
+      "layer": "vitest"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "results": [
+    {
+      "test_id": "T-HOOK-001",
+      "status": "passed",
+      "commit": "abc123",
+      "design_version": "screen-design-v1",
+      "run_id": "run-100"
+    },
+    {
+      "test_id": "T-STORY-001",
+      "status": "not_run",
+      "commit": "abc123",
+      "design_version": "screen-design-v1",
+      "run_id": "run-100"
+    },
+    {
+      "test_id": "T-E2E-002",
+      "status": "failed",
+      "commit": "abc123",
+      "design_version": "screen-design-v0",
+      "run_id": "run-099"
+    },
+    {
+      "test_id": "T-ORPHAN-999",
+      "status": "passed",
+      "commit": "abc123",
+      "design_version": "screen-design-v1",
+      "run_id": "run-100"
+    }
+  ]
+}

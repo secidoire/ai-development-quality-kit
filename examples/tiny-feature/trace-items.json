@@ -1,0 +1,36 @@
+{
+  "design_version": "screen-design-v1",
+  "commit": "abc123",
+  "items": [
+    {
+      "design_id": "SCR-CUST-001",
+      "location": "画面設計書v1 3.1",
+      "summary": "検索語が2文字未満なら検索ボタンを非活性にする",
+      "verification_conditions": [
+        {
+          "condition_id": "VC-001-A",
+          "status": "approved",
+          "test_ids": ["T-HOOK-001", "T-STORY-001"]
+        }
+      ]
+    },
+    {
+      "design_id": "SCR-CUST-002",
+      "location": "画面設計書v1 3.4",
+      "summary": "検索APIが失敗したら画面上部にエラーを表示する",
+      "verification_conditions": [
+        {
+          "condition_id": "VC-002-A",
+          "status": "candidate",
+          "test_ids": ["T-STORY-404", "T-E2E-002"]
+        }
+      ]
+    },
+    {
+      "design_id": "SCR-CUST-003",
+      "location": "画面設計書v1 3.7",
+      "summary": "検索結果行から詳細画面へ遷移する",
+      "verification_conditions": []
+    }
+  ]
+}

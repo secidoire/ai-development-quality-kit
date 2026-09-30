@@ -1,0 +1,53 @@
+{
+  "findings": [
+    {
+      "severity": "error",
+      "code": "RESULT_NOT_PASSED",
+      "design_id": "SCR-CUST-001",
+      "test_id": "T-STORY-001",
+      "status": "not_run"
+    },
+    {
+      "severity": "error",
+      "code": "MISSING_TEST",
+      "design_id": "SCR-CUST-002",
+      "condition_id": "VC-002-A",
+      "test_id": "T-STORY-404",
+      "message": "linked test is not in test inventory"
+    },
+    {
+      "severity": "error",
+      "code": "STALE_DESIGN_VERSION",
+      "design_id": "SCR-CUST-002",
+      "test_id": "T-E2E-002",
+      "expected": "screen-design-v1",
+      "actual": "screen-design-v0"
+    },
+    {
+      "severity": "error",
+      "code": "RESULT_NOT_PASSED",
+      "design_id": "SCR-CUST-002",
+      "test_id": "T-E2E-002",
+      "status": "failed"
+    },
+    {
+      "severity": "warning",
+      "code": "CANDIDATE_LINK",
+      "design_id": "SCR-CUST-002",
+      "condition_id": "VC-002-A",
+      "message": "link requires human approval"
+    },
+    {
+      "severity": "error",
+      "code": "NO_VERIFICATION_CONDITION",
+      "design_id": "SCR-CUST-003",
+      "message": "design item has no verification condition"
+    },
+    {
+      "severity": "warning",
+      "code": "ORPHAN_TEST",
+      "test_id": "T-ORPHAN-999",
+      "message": "test exists but is not linked from trace table"
+    }
+  ]
+}
