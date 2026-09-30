@@ -14,6 +14,8 @@
 
 同一Codespaceやローカルworkspaceで、共通親フォルダ配下にdocs repo/code repoを兄弟配置する場合は、資料のpathだけでなくrepo名とcommitを併記する。読めることと変更できることを混同せず、二つのrepoへ勝手に一括commitしない。GitHub Issueの起票先repoは初回適応時に確認する。
 
+初回パスは discovery-only とする。docs repo root と code repo root を明示し、資産の場所、読めないファイル、抽出できない形式、不明な承認経路、既存instructions/テンプレート、出力先権限だけを一覧化する。この段階ではファイル編集、Issue作成、commit、テンプレート変更、docs/code repoをまたぐ書き込みをしない。人がrepo root、Issue起票先、読み取り/書き込み権限、次に深掘りする代表機能を確認してから、設計レビューやパイロットへ進む。
+
 ## 2. 固定/交渉可能/慣習の分離
 
 - 固定: 契約、顧客指定、納品条件、承認済み標準。
@@ -88,6 +90,6 @@ IDE内Copilotを使い、次の順で依頼する。
 8. トレース表と実行証拠の整合チェック。
 9. 人の設計判断/重要レビュー。
 
-Copilotには「未確認を補完しない」「候補リンクと承認済リンクを分ける」「API/IFの正本候補を案件ごとに確認し、観測された挙動と承認済み要求を分け、追えない箇所は未確認にする」と毎回明示する。Agent Skillsが使える場合はcopilot/skills/frontend-trace-qualityを配置候補にする。使えない場合はprompt filesまたはチャット貼り付けで代替する。
+Copilotには「未確認を補完しない」「候補リンクと承認済リンクを分ける」「API/IFの正本候補を案件ごとに確認し、観測された挙動と承認済み要求を分け、追えない箇所は未確認にする」と毎回明示する。Agent Skillsが使える場合はcopilot/skills/frontend-trace-qualityを配置候補にする。使えない場合は、実環境で認識されるSkills entryまたは明示的な添付/チャット貼り付けで代替する。VS Codeでは`.github/prompts`はLocal agent用の場所であり、Agent Hostはprompt filesをloadしないため、prompt filesの自動loadを前提にしない。
 
 GitHub上coding agentへの自動PR作成は標準工程にしない。Issue起票は案件権限と運用承認に従う。

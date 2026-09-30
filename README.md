@@ -22,13 +22,15 @@ GitHub Copilotの利用は、IDE内Copilotによる人主導の対話・編集�
 
 導入は全工程のつながりを定義したうえで、代表的な機能1つの縦通しパイロットから始めます。全プロジェクト一斉導入や全工程無人化は前提にしません。
 
+最初の適用は discovery-only にします。docs repo と code repo の両方のroot、読める資産の場所、読めない/不明な項目、既存instructions/テンプレート、出力先権限だけを報告し、ファイル編集、Issue作成、commitは行いません。人が確認してから、設計レビュー、Issue分解、代表機能パイロットへ進みます。
+
 ## Copilotへの適用候補
 
 既存のrepository instructionsやプロンプトを上書きせず、差分として統合してください。実適用前に、IDE製品/バージョン、組織ポリシー、Copilot Agent Skills、prompt files、repository custom instructionsの対応状況を確認します。
 
 - Agent Skillsが使える場合: `copilot/skills/frontend-trace-quality/`を、対応IDEで公式Docsを確認し、対象repoの `.github/skills/frontend-trace-quality/` など、認識されるプロジェクトスキル配置先へ置く。
 - repository custom instructionsへ入れる場合: `copilot/copilot-instructions.md`の内容を、対象repoの既存 `.github/copilot-instructions.md` へ差分統合する。
-- IDE prompt filesが使える場合: 対応IDEでは `copilot/prompts/*.prompt.md` を対象repoの `.github/prompts/` など認識される場所へ置き、タスク別に参照する。Skillが自動で読まれない場合は、その本文も明示的に参照させる。
+- IDE prompt filesが使える場合: 現在のVS Code公式Docsでは、`.github/prompts` はLocal agentが使うworkspace prompt file場所です。一方でAgent Host sessionsではprompt filesはdeprecatedで、Agent Hostにはloadされません。実環境に合わせて、まずSkills entryを使うか、prompt本文を明示的に添付/貼り付けて参照させ、全環境で自動loadされる前提にしないでください。
 - docs repo/code repoを兄弟配置する場合: どのrepoのinstructionsが効くか、Issue起票先repoはどこか、読み取り/書き込み権限がどこまであるかを初回適応で確認する。
 
 `scripts/trace_check.py`は、トレース表、テスト一覧、実行結果の機械的整合を確認する最小チェッカーです。現実装は渡されたJSONインベントリ内のIDを照合するだけで、実テストファイルやtest runnerを探索しません。`MISSING_TEST`は「テスト一覧JSONに無い」という意味であり、ファイルシステムを実読して不存在を証明したものではありません。GitHub Actions連携やリポジトリ固有adapterは未導入であり、既存CIと権限確認後の導入案です。
