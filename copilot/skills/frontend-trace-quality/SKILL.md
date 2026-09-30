@@ -1,11 +1,11 @@
 ---
 name: frontend-trace-quality
-description: Use when adapting frontend design documents, issue breakdown, meaningful test code, and traceability for a contracted Next.js project while preserving customer templates.
+description: Use when adapting frontend design documents, issue breakdown, meaningful test code, and traceability for a Next.js project while preserving existing templates and agreed specifications.
 ---
 
 # Frontend Trace Quality
 
-Use this skill when helping with a contracted frontend project that needs to connect customer design documents, Figma, API assets, tests, and execution evidence without replacing existing customer templates.
+Use this skill when helping with a frontend project that needs to connect design documents, Figma, API assets, tests, and execution evidence without replacing existing templates or agreed specifications.
 
 ## Operating Principles
 
